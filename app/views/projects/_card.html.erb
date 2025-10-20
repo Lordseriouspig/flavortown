@@ -3,7 +3,7 @@
         <div class="bg-card-brown rounded-4xl border-12 border-card-brown-border overflow-hidden drop-shadow-xl p-3">
             <!-- Project Banner -->
             <% if project.banner.attached? %>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden drop-shadow-xl">
                         <%= image_tag project.banner.variant(:card),
                             alt: "#{project.title} banner",
                             class: "w-full h-full object-cover" %>
@@ -11,7 +11,7 @@
             <% else %>
                 <!-- no banner -->
                 <%# replace this  %>
-                <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-xl overflow-hidden">
+                <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-xl overflow-hidden drop-shadow-xl">
                     <div class="w-full h-full flex items-center justify-center">
                         <div class="text-center text-gray-400">
                             <p class="text-xs">No banner</p>
@@ -32,7 +32,7 @@
                         <%= truncate(project.description, length: 120) %>
                     </p>
                 <% end %>
-                <div class="text-card-brown flex gap-1">
+                <div class="text-card-brown flex gap-1 leading-none">
                     <span class="bg-[#D7B594] p-1 rounded-sm">15 devlogs</span>
                     <span class="bg-[#D7B594] p-1 rounded-sm">23 hrs 15 mins</span>
                 </div>
