@@ -1,12 +1,12 @@
 <div class="section hero">
-  <%= inline_svg_tag "landing/hero/flag-orpheus-top.svg", class: "orph-flag" %>
+  <%= inline_svg_tag "landing/hero/flag-orpheus-top.svg", class: "orph-flag", alt: "hackclub orpheus flag" %>
 
   <div class="login-btn">
     <% if show_signin_button? %>
       <%= form_tag "/auth/slack", method: :post, data: {turbo: false} do %>
         <button class="btn btn--red btn--striped">
           <div>
-            <%= image_tag "mask/enter.webp", width: 20, height: 20 %>
+            <%= image_tag "mask/enter.webp", width: 20, height: 20, alt: "enter icon" %>
             Sign in!
           </div>
         </button>
@@ -20,11 +20,19 @@
   </div>
 
   <div class="top-collab">
+<<<<<<< HEAD
+    <%= image_tag "landing/hero/hc-gh-collab.webp", loading: "lazy", decoding: "async", alt: "hackclub x github icon" %>
+=======
     <%= image_tag "landing/hero/hc-gh-collab.avif", loading: "lazy", decoding: "async" %>
+>>>>>>> 5583fe6f025cdd25755d754e770a75caaca1a71d
   </div>
 
   <div class="rsvp-container">
+<<<<<<< HEAD
+    <%= image_tag "landing/hero/logo.webp", loading: "eager", decoding: "async", sizes: "(max-width: 600px) 160px, 240px", fetchpriority: "high", alt: "flavortown icon (orpheus holding food with the text flavortown in the front)" %>
+=======
     <%= image_tag "landing/hero/logo.avif", loading: "eager", decoding: "async", sizes: "(max-width: 600px) 160px, 240px", fetchpriority: "high" %>
+>>>>>>> 5583fe6f025cdd25755d754e770a75caaca1a71d
     <h3>Cook tasty projects. Win tasty prizes.</h3>
 
     <%= render "rsvp_form", rsvp: Rsvp.new %>
@@ -32,8 +40,8 @@
     <h4>For ages 13 to 18. Ends September 30, 2025.</h4>
     <h5>Over 18? Earn the same prizes by <a href="https://docs.google.com/document/d/1xiAoYrO6wY1knzZhI1TFYVqCo6q2R7A46he0w5tan90/edit?tab=t.0" target="_blank">getting teens to sign up</a></h5>
 
-    <%= image_tag "icons/chevrons-red-down.svg", class: "carat", size: 48 %>
+    <%= image_tag "icons/chevrons-red-down.svg", class: "carat", size: 48, alt: "down error red" %>
   </div>
 
-  <%= image_tag "landing/hero/long-image.webp", class: "hero-art", loading: "eager", decoding: "async", fetchpriority: "high", sizes: "100vw" %>
+  <%= image_tag "landing/hero/long-image.webp", class: "hero-art", loading: "eager", decoding: "async", fetchpriority: "high", sizes: "100vw", alt: "a wide image of a kitchen with heide and orpheus cooking in." %>
 </div>
