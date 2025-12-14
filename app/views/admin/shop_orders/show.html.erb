@@ -220,7 +220,7 @@
       </form>
     <% end %>
 
-    <% if @order.awaiting_periodical_fulfillment? && (current_user.admin? || current_user.fulfillment_person?) %>
+    <% if @order.awaiting_periodical_fulfillment? && (admin_signed_in? || current_user.fulfillment_person?) %>
       <form method="post" action="<%= mark_fulfilled_admin_shop_order_path(@order) %>">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <button type="submit" class="btn-primary" style="width: 100%; padding: 0.2rem 0.4rem;" onclick="return confirm('Mark this order as fulfilled?')">✔ Fulfilled</button>

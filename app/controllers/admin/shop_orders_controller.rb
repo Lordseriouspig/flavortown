@@ -5,7 +5,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
     @view = params[:view] || "shop_orders"
 
     # Fulfillment team can only access fulfillment view
-    if current_user.fulfillment_person? && !current_user.admin?
+    if current_user.fulfillment_person? && !admin_signed_in?
       if @view != "fulfillment"
         authorize :admin, :access_fulfillment_view?  # Will raise NotAuthorized
       end
@@ -31,7 +31,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
     orders = orders.where(shop_item_id: params[:shop_item_id]) if params[:shop_item_id].present?
 
     # Set default status for fraud dept
-    @default_status = "pending" if current_user.fraud_dept? && !current_user.admin?
+    @default_status = "pending" if current_user.fraud_dept? && !admin_signed_in?
     status_filter = params[:status].presence || @default_status
     orders = orders.where(aasm_state: status_filter) if status_filter.present?
     orders = orders.where("created_at >= ?", params[:date_from]) if params[:date_from].present?
@@ -59,7 +59,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
     end
 
     # Apply region filter after stats calculation (converts to array)
-    if current_user.fulfillment_person? && !current_user.admin? && current_user.region.present?
+    if current_user.fulfillment_person? && !admin_signed_in? && current_user.region.present?
       orders = orders.to_a.select do |order|
         if order.frozen_address.present?
           order_region = Shop::Regionalizable.country_to_region(order.frozen_address["country"])
@@ -112,7 +112,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
   end
 
   def show
-    if current_user.fulfillment_person? && !current_user.admin?
+    if current_user.fulfillment_person? && !admin_signed_in?
       authorize :admin, :access_fulfillment_view?
     else
       authorize :admin, :access_shop_orders?
@@ -137,7 +137,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
   end
 
   def reveal_address
-    if current_user.fulfillment_person? && !current_user.admin?
+    if current_user.fulfillment_person? && !admin_signed_in?
       authorize :admin, :access_fulfillment_view?
     else
       authorize :admin, :access_shop_orders?
@@ -248,7 +248,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
   end
 
   def mark_fulfilled
-    if current_user.fulfillment_person? && !current_user.admin?
+    if current_user.fulfillment_person? && !admin_signed_in?
       authorize :admin, :access_fulfillment_view?
     else
       authorize :admin, :access_shop_orders?
@@ -273,7 +273,7 @@ class Admin::ShopOrdersController < Admin::ApplicationController
   end
 
   def update_internal_notes
-    if current_user.fulfillment_person? && !current_user.admin?
+    if current_user.fulfillment_person? && !admin_signed_in?
       authorize :admin, :access_fulfillment_view?
     else
       authorize :admin, :access_shop_orders?

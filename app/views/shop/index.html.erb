@@ -1,7 +1,7 @@
 <div class="shop" data-controller="shop" data-shop-user-region-value="<%= @user_region %>">
   <%= render HeadingComponent.new(title: "Shop", tone: :brown) %>
   <% if @shop_open %>
-    <% if current_user&.admin? %>
+    <%= admin_tool do %>
       <div class="admin-banner">
         <div class="admin-banner__content">
           <span class="admin-banner__count"><%= @shop_items.count %> items</span>

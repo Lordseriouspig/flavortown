@@ -92,7 +92,7 @@ module Admin
     end
 
     def ensure_authorized_user
-      unless current_user&.admin?
+      unless admin_signed_in?
         redirect_to root_path, alert: "whomp whomp"
       end
     end

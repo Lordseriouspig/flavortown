@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def admin_signed_in?
+    current_user&.admin?
+  end
+  helper_method :admin_signed_in?
+
   def tutorial_message(msg)
     flash[:tutorial_messages] ||= []
     if msg.is_a?(Array)
@@ -56,7 +61,7 @@ class ApplicationController < ActionController::Base
   def handle_error(exception)
     event_id = Sentry.last_event_id || Sentry.capture_exception(exception)&.event_id
     @trace_id = event_id || request.request_id
-    @exception = exception if current_user&.admin?
+    @exception = exception if admin_signed_in?
 
     raise exception if Rails.env.development? && !params[:show_error_page]
 

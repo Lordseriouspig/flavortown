@@ -77,9 +77,9 @@
                     title: "Sync Hackatime Data",
                     class: "btn-primary slim",
                     style: "font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
-      <%= render 'role_toggle', user: @user, role_icon: '🕵️‍♀️', role_name: 'fraud_dept', disabled: !current_user&.admin? %>
-      <%= render 'role_toggle', user: @user, role_icon: '📦', role_name: 'fulfillment_person', disabled: !current_user&.admin? %>
-      <%= render 'role_toggle', user: @user, role_icon: '🚢', role_name: 'project_certifier', disabled: !current_user&.admin? %>
+      <%= render 'role_toggle', user: @user, role_icon: '🕵️‍♀️', role_name: 'fraud_dept', disabled: !admin_signed_in? %>
+      <%= render 'role_toggle', user: @user, role_icon: '📦', role_name: 'fulfillment_person', disabled: !admin_signed_in? %>
+      <%= render 'role_toggle', user: @user, role_icon: '🚢', role_name: 'project_certifier', disabled: !admin_signed_in? %>
       <%= render 'role_toggle', user: @user, role_icon: '⚡', role_name: 'admin', disabled: !current_user&.super_admin? %>
 
       <% if @user.shop_orders.where(aasm_state: %w[pending awaiting_periodical_fulfillment]).any? %>
@@ -158,7 +158,7 @@
                     method: :post,
                     params: { feature: "shop_open" },
                     class: "btn-primary slim",
-                    disabled: !current_user&.admin? %>
+                    disabled: !admin_signed_in? %>
 
       <% has_admin_green = Flipper.enabled?(:admin_green, @user) %>
       <%= button_to (has_admin_green ? "Disable Admin Green" : "Enable Admin Green"),
@@ -166,7 +166,7 @@
                     method: :post,
                     params: { feature: "admin_green" },
                     class: "btn-primary slim",
-                    disabled: !current_user&.admin? %>
+                    disabled: !admin_signed_in? %>
 
       <% has_admin_dark = Flipper.enabled?(:admin_dark, @user) %>
       <%= button_to (has_admin_dark ? "Disable Admin Dark Mode" : "Enable Admin Dark Mode"),
@@ -174,7 +174,7 @@
                     method: :post,
                     params: { feature: "admin_dark" },
                     class: "btn-primary slim",
-                    disabled: !current_user&.admin? %>
+                    disabled: !admin_signed_in? %>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def admin_tool(&block)
-    if current_user&.admin?
+    if admin_signed_in?
       content_tag(:div, class: "admin tools-do", &block)
     end
   end
