@@ -12,11 +12,13 @@
 #  cookie_clicks                           :integer          default(0), not null
 #  display_name                            :string
 #  email                                   :string
+#  enriched_ref                            :string
 #  first_name                              :string
 #  granted_roles                           :string           default([]), not null, is an Array
 #  has_gotten_free_stickers                :boolean          default(FALSE)
 #  has_pending_achievements                :boolean          default(FALSE), not null
 #  hcb_email                               :string
+#  internal_notes                          :text
 #  last_name                               :string
 #  leaderboard_optin                       :boolean          default(FALSE), not null
 #  magic_link_token                        :string
@@ -27,6 +29,9 @@
 #  send_notifications_for_followed_devlogs :boolean          default(TRUE), not null
 #  send_votes_to_slack                     :boolean          default(FALSE), not null
 #  session_token                           :string
+#  shadow_banned                           :boolean          default(FALSE), not null
+#  shadow_banned_at                        :datetime
+#  shadow_banned_reason                    :text
 #  shop_region                             :enum
 #  slack_balance_notifications             :boolean          default(FALSE), not null
 #  special_effects_enabled                 :boolean          default(TRUE), not null
@@ -42,6 +47,7 @@
 #
 # Indexes
 #
+#  index_users_on_api_key           (api_key) UNIQUE
 #  index_users_on_email             (email)
 #  index_users_on_magic_link_token  (magic_link_token) UNIQUE
 #  index_users_on_session_token     (session_token) UNIQUE
