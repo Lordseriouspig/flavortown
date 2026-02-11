@@ -103,7 +103,7 @@ gem "mission_control-jobs"
 gem "view_component"
 gem "phlex-rails"
 gem "aws-sdk-s3"
-gem "faraday"
+gem "faraday", ">= 2.14.1"
 
 gem "faker", "~> 3.5"
 gem "jsbundling-rails", "~> 1.3"
